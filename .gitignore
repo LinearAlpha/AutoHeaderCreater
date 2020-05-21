@@ -1,0 +1,24 @@
+# cmake ignore
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps
+build
+
+# For VSCode
+.vscode
+
+#For matlab
+.asv
+.mat
+
+# python exculdable
+__pycache__
+dist
+.exe.spec
