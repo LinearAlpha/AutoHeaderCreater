@@ -2,6 +2,7 @@
 #include "libs/BulletProof/BulletProof.h"
 #include "libs/DateTime/DateTime.h"
 #include "libs/MultyOSCom/MultyOSCom.h"
+#include "include/Authors.h"
 
 using namespace std;
 
@@ -11,30 +12,28 @@ inline void subFileMenu();
 int main()
 {
     cout << "Wlecome to HeaderCreater V0.5_BetaAlpha" << endl;
-    string tmTmp = tmFormat(false, true, true);
-    cout << "Local Time: " << tmTmp << endl;
-    tmTmp = tmFormat(true, true, true);
-    cout << "UTC Time: " << tmTmp << endl;
+    // recall current and UTC time and print
+    cout << "Local Time: " << tmFormat(false, true, true) << endl;
+    cout << "UTC Time: " << tmFormat(true, true, true) << endl;
     pauseTerminal();
-    int option;
-    bool flag = true; // flag for looping program manu
+    int option;     // value for user manu chose
+    bool flag = true;   // flag for main manu loop
     do
     {
-        // recall mainMenu function to print manu
-        mainMenu(option);
+        mainMenu(option);   // recall mainMenu function to print manu
         switch (option)
         {
         case 1:
-            subFileMenu();
+            subFileMenu();  // recall sub manu for file header
             break;
 
         default:
-            flag = false;
+            flag = false;   // exit program
             break;
         }
     } while (flag);
     cout << "Thank you for using this program!!!!\n"
-         << endl;
+         << "If there is any problem, please contact to kim00922@umn.edu\n\n";
     return 0;
 }
 
@@ -68,7 +67,5 @@ inline void subFileMenu()
         vector<string> authors;
         string description;
     }fileHeader;
-    
     cout << "\n\n\n->File Name: ";
-
 }
