@@ -1,13 +1,14 @@
 #include "include/stdafx.h"
+#include "include/AllInfo.h"
+// personal libs
 #include "libs/BulletProof/BulletProof.h"
 #include "libs/DateTime/DateTime.h"
 #include "libs/MultyOSCom/MultyOSCom.h"
-#include "include/Authors.h"
 
 using namespace std;
 
 inline void mainMenu(int &option);
-inline void subFileMenu();
+inline void subFileMenu(vector<AllInfo> &fileInfo);
 
 int main()
 {
@@ -16,19 +17,21 @@ int main()
     cout << "Local Time: " << tmFormat(false, true, true) << endl;
     cout << "UTC Time: " << tmFormat(true, true, true) << endl;
     pauseTerminal();
-    int option;     // value for user manu chose
-    bool flag = true;   // flag for main manu loop
+    int option;       // value for user manu chose
+    bool flag = true; // flag for main manu loop
+    vector<AllInfo> fileInfo;
+    vector<AllInfo> funcInfo;
     do
     {
-        mainMenu(option);   // recall mainMenu function to print manu
+        mainMenu(option); // recall mainMenu function to print manu
         switch (option)
         {
         case 1:
-            subFileMenu();  // recall sub manu for file header
+            subFileMenu(fileInfo); // recall sub manu for file header
             break;
 
         default:
-            flag = false;   // exit program
+            flag = false; // exit program
             break;
         }
     } while (flag);
@@ -50,22 +53,31 @@ inline void mainMenu(int &option)
     bulProof(option, 0, 2);
 }
 
-inline void subFileMenu()
+inline void subFileMenu(vector<AllInfo> &fileInfo)
 {
-    int subOption;
+    int subOpNumAu;
     cout << "\t0. exit from current slection\n"
          << "\t1. Continue\n"
          << "\t>> ";
-    cin >> subOption;
-    bulProof(subOption, 0, 1);
-    if (subOption == 0)
-        return;
-    struct fileHeader
-    {
-        string FileName;
-        int numAuthors;
-        vector<string> authors;
-        string description;
-    }fileHeader;
+    cin >> subOpNumAu;
+    bulProof(subOpNumAu, 0, 1);
+    if (subOpNumAu == 0)
+        return; // retrun to the main manu
+    AllInfo tmpAll;
+    string tmpInputArr[3];
     cout << "\n\n\n->File Name: ";
+    getline(cin, tmpInputArr[0]);
+    cout << tmpInputArr[0] << endl;
+    cout << "How many Authors (Deafaul is 1): ";
+    char tmp[256];
+    cin.get(tmp, 256);
+    if (tmp[0] == '\n')
+        subOpNumAu = 1;
+    else
+    {
+        subOpNumAu = cin.get();
+        bulProofGenInput(subOpNumAu, 0);
+    }
+    cout << to_string(subOpNumAu);
+    pauseTerminal();
 }

@@ -16,13 +16,14 @@ set(CMAKE_VERBOSE_MAKEFILE true)
 # set language and compiler
 enable_language(CXX)
 set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_COMPILER clang++)
+#set(CMAKE_CXX_COMPILER clang++)
 # Commen compile option
-add_compile_options(-m64 -Wall)
+add_compile_options(-g -m64 -Wall)
+include_directories(source/include)
 
 # output name format
 set(OUTPUT_FL
-    "${CMAKE_PROJECT_NAME}-V${major}.${minor}.out"
+    "${CMAKE_PROJECT_NAME}-V${major}.${minor}.exe"
 )
 
 # lib list, compile only onece
