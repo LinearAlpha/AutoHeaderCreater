@@ -1,7 +1,7 @@
 #ifndef _MULTYOSCOM_
 #define _MULTYOSCOM_
 
-#include <iostream>
+#include "../stdafx.h"
 
 void clearScreen();
 void pauseTerminal();

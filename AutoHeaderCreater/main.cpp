@@ -12,7 +12,7 @@ inline void subFileMenu(vector<AllInfo> &fileInfo);
 
 int main()
 {
-    cout << "Wlecome to HeaderCreater V0.5_BetaAlpha" << endl;
+    cout << "Wlecome to HeaderCreater V0.5_Beta" << endl;
     // recall current and UTC time and print
     cout << "Local Time: " << tmFormat(false, true, true) << endl;
     cout << "UTC Time: " << tmFormat(true, true, true) << endl;

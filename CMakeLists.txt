@@ -1,50 +1,25 @@
-# Minimal version of cmake
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required (VERSION 3.10)
+project(AutoHeaderCreater
+    VERSION 0.5
+    LANGUAGES CXX
+)
 
-# Name of Project and version
-project(AutoHeaderCreater)
-set(major 0)
-set(minor 5)
-
-include(CTest)
-enable_testing()
-
-# set build type
-set(CMAKE_BUILD_TYPE Debug)
-set(CMAKE_VERBOSE_MAKEFILE true)
-
-# set language and compiler
-enable_language(CXX)
 set(CMAKE_CXX_STANDARD 11)
-#set(CMAKE_CXX_COMPILER clang++)
-# Commen compile option
-add_compile_options(-g -m64 -Wall)
-include_directories(source/include)
 
-# output name format
-set(OUTPUT_FL
-    "${CMAKE_PROJECT_NAME}-V${major}.${minor}.exe"
-)
+if (NOT CMAKE_BUILD_TYPE)
+ set(CMAKE_BUILD_TYPE "Release")
+else()
+ set(CMAKE_BUILD_TYPE "Debug")
+endif (NOT CMAKE_BUILD_TYPE)
 
-# lib list, compile only onece
-add_library(mylib
-    STATIC
-    source/libs/BulletProof/BulletProof.cpp
-    source/libs/DateTime/DateTime.cpp
-    source/libs/MultyOSCom/MultyOSCom.cpp
-)
+if (MSVC)
+    # warning level 4 and all warnings as errors
+    add_compile_options(/W4)
+else()
+    # lots of warnings and all warnings as errors
+    add_compile_options(-Wall -O2)
+endif()
 
-# source file list
-set(SRC_LIST
-    source/main.cpp
-    source/Authors.cpp
-    source/AllInfo.cpp
-)
-
-# output dir
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BUILD_TYPE})
-
-# Build
-add_executable(${OUTPUT_FL} ${SRC_LIST})
-# linking output anc lib
-target_link_libraries(${OUTPUT_FL} mylib)
+# Include sub-projects.
+add_subdirectory(lib)
+add_subdirectory(AutoHeaderCreater)

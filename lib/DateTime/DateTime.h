@@ -1,8 +1,7 @@
 #ifndef _DATETIME_
 #define _DATETIME_
 
-#include <iostream>
-#include <string>
+#include "../stdafx.h"
 #include <ctime>
 #include <stdexcept>
 

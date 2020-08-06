@@ -1,7 +1,7 @@
 #ifndef _BULLETPROOF_
 #define _BULLETPROOF_
 
-#include <iostream>
+#include "../stdafx.h"
 #include <stdexcept>
 
 void cleanPipe();
